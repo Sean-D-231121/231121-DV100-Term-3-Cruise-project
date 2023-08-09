@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Home page of Seagull Star Cruises">
+    <meta name="keywords" content="HTML,CSS, Bootstrap, Cruises">
+    <meta name="author" content="Sean Dubbelman">
+    <link rel="icon" type="image/x-icon" href="./assets/Logo-normal.png">
+    <title>Seagull Star Cruises</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/main.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg" style="background-color: #489fb5">
+      <a class="navbar-brand" href="./index.html"
+        ><img src="./assets/Logo-normal.png" alt="normal logo"
+      /></a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="../pages/Trips.html"
+              >Trips</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./pages//Checkout.html">Basket</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div id="cruise-carousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item slide-1 active">
+          <div class="container">
+            <h2>Want an amazing cruise experience?</h2>
+            <p>
+              Experience the ultimate relaxation on a serene cruise, where
+              tranquil seas and gentle breezes create a haven of calm. Unwind in
+              luxurious accommodations, pamper yourself with rejuvenating spa
+              treatments, and savor delectable cuisine as you drift from one
+              breathtaking destination to another.
+            </p>
+            <button class="carousel-button">Go to trip</button>
+          </div>
+        </div>
+        <div class="carousel-item slide-2">
+          <div class="container">
+            <h2>Amazing accommodations!</h2>
+            <p>
+              Nestled within the heart of the cruise ship, this cabin is a
+              masterpiece of comfort and luxury. The private balcony unveils
+              sweeping ocean vistas, a tranquil haven where the sea's gentle
+              rhythm is your companion. The seamless fusion of elegant design,
+              upscale amenities, and personalized service ensures that each
+              moment spent in this cabin is a symphony of relaxation and
+              opulence.
+            </p>
+            <button class="carousel-button">Go to trip</button>
+          </div>
+        </div>
+        <div class="carousel-item slide-3">
+          <div class="container">
+            <h2>Amazing Dining all around!</h2>
+            <p>
+              Go on a gastronomic journey like no other on our exquisite cruise
+              ship. Elevate your senses with a symphony of flavors, where
+              world-class chefs orchestrate culinary masterpieces that delight
+              even the most discerning palate.
+            </p>
+            <button class="carousel-button">Go to trip</button>
+          </div>
+        </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#cruise-carousel"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#cruise-carousel"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+    <div class="container">
+      <div class="card mb-3">
+        <img src="./assets/map.png" class="card-img-top map" alt="map" />
+        <div class="card-body">
+          <div class="row">
+            <div class="col-6 trip-map-heading">
+              <h5>Trip name</h5>
+              <p id="map-trip-name"></p>
+            </div>
+            <div class="col-6 trip-map-heading" id="mapDestinations">
+              <h5>Destinations</h5>
+              <ul>
+                <li>Brisbane</li>
+                <li>Coffs Harbor</li>
+                <li>Port Macquarie</li>
+                <li>Sydney</li>
+              </ul>
+            </div>
+          </div>
+          <button id="book-trip-button">Book trip</button>
+        </div>
+      </div>
+      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <button
+          class="nav-link active"
+          id="Monday"
+          data-bs-toggle="tab"
+          data-bs-target="#Monday-tab"
+          type="button"
+          role="tab"
+          aria-controls="Monday-tab"
+          aria-selected="true"
+        >
+          Monday
+        </button>
+        <button
+          class="nav-link"
+          id="Tuesday"
+          data-bs-toggle="tab"
+          data-bs-target="#Tuesday-tab"
+          type="button"
+          role="tab"
+          aria-controls="Tuesday-tab"
+          aria-selected="false"
+        >
+          Tuesday
+        </button>
+        <button
+          class="nav-link"
+          id="Wednesday"
+          data-bs-toggle="tab"
+          data-bs-target="#Wednesday-tab"
+          type="button"
+          role="tab"
+          aria-controls="Wednesday-tab"
+          aria-selected="false"
+        >
+          Wednesday
+        </button>
+        <button
+          class="nav-link"
+          id="Thursday"
+          data-bs-toggle="tab"
+          data-bs-target="#Thursday-tab"
+          type="button"
+          role="tab"
+          aria-controls="Thursday-tab"
+          aria-selected="false"
+        >
+          Thursday
+        </button>
+        <button
+          class="nav-link"
+          id="Friday"
+          data-bs-toggle="tab"
+          data-bs-target="#Friday-tab"
+          type="button"
+          role="tab"
+          aria-controls="Friday-tab"
+          aria-selected="false"
+        >
+          Friday
+        </button>
+        <button
+          class="nav-link"
+          id="Saturday"
+          data-bs-toggle="tab"
+          data-bs-target="#Saturday-tab"
+          type="button"
+          role="tab"
+          aria-controls="Saturday-tab"
+          aria-selected="false"
+        >
+          Saturday
+        </button>
+        <button
+          class="nav-link"
+          id="Sunday"
+          data-bs-toggle="tab"
+          data-bs-target="#Sunday-tab"
+          type="button"
+          role="tab"
+          aria-controls="Sunday-tab"
+          aria-selected="false"
+        >
+          Sunday
+        </button>
+      </div>
+      <div class="tab-content" id="nav-tabContent">
+        <div
+          class="tab-pane fade show active"
+          id="Monday-tab"
+          role="tabpanel"
+          aria-labelledby="nav-Monday-tab"
+          tabindex="0"
+        >
+          <div class="cityAndDate">
+            <p class="city">Sydney</p>
+            <p class="date">2023/01/01</p>
+          </div>
+
+          <div class="weather-state">
+            <p>13 °C</p>
+            <div class="weather-div">
+              <img
+                class="weather-icon"
+                src="./assets/Sunny-image.png"
+                alt=""
+              /><br />
+              <p class="weather-word">Sunny</p>
+            </div>
+            <p class="wind-speed">50 knots</p>
+          </div>
+
+          <div class="high-low-temp">
+            <p class="high">High: 15 °C</p>
+            <p class="low">Low: 10 °C</p>
+          </div>
+        </div>
+        <div
+          class="tab-pane fade"
+          id="Tuesday-tab"
+          role="tabpanel"
+          aria-labelledby="nav-Tuesday-tab"
+          tabindex="0"
+        >
+          <div class="cityAndDate">
+            <p class="city">Sydney</p>
+            <p class="date">2023/01/01</p>
+          </div>
+
+          <div class="weather-state">
+            <p>13 °C</p>
+            <div class="weather-div">
+              <img
+                class="weather-icon"
+                src="./assets/Sunny-image.png"
+                alt=""
+              /><br />
+              <p class="weather-word">Sunny</p>
+            </div>
+            <p class="wind-speed">50 knots</p>
+          </div>
+
+          <div class="high-low-temp">
+            <p class="high">High: 15 °C</p>
+            <p class="low">Low: 10 °C</p>
+          </div>
+        </div>
+        <div
+          class="tab-pane fade"
+          id="Wednesday-tab"
+          role="tabpanel"
+          aria-labelledby="nav-Wednesday-tab"
+          tabindex="0"
+        >
+          <div class="cityAndDate">
+            <p class="city">Sydney</p>
+            <p class="date">2023/01/01</p>
+          </div>
+
+          <div class="weather-state">
+            <p>13 °C</p>
+            <div class="weather-div">
+              <img
+                class="weather-icon"
+                src="./assets/Sunny-image.png"
+                alt=""
+              /><br />
+              <p class="weather-word">Sunny</p>
+            </div>
+            <p class="wind-speed">50 knots</p>
+          </div>
+
+          <div class="high-low-temp">
+            <p class="high">High: 15 °C</p>
+            <p class="low">Low: 10 °C</p>
+          </div>
+        </div>
+        <div
+          class="tab-pane fade"
+          id="Thursday-tab"
+          role="tabpanel"
+          aria-labelledby="nav-Thursday-tab"
+          tabindex="0"
+        >
+          <div class="cityAndDate">
+            <p class="city">Sydney</p>
+            <p class="date">2023/01/01</p>
+          </div>
+
+          <div class="weather-state">
+            <p>13 °C</p>
+            <div class="weather-div">
+              <img
+                class="weather-icon"
+                src="./assets/Sunny-image.png"
+                alt=""
+              /><br />
+              <p class="weather-word">Sunny</p>
+            </div>
+            <p class="wind-speed">50 knots</p>
+          </div>
+
+          <div class="high-low-temp">
+            <p class="high">High: 15 °C</p>
+            <p class="low">Low: 10 °C</p>
+          </div>
+        </div>
+        <div
+          class="tab-pane fade"
+          id="Friday-tab"
+          role="tabpanel"
+          aria-labelledby="nav-Friday-tab"
+          tabindex="0"
+        >
+          <div class="cityAndDate">
+            <p class="city">Sydney</p>
+            <p class="date">2023/01/01</p>
+          </div>
+
+          <div class="weather-state">
+            <p>13 °C</p>
+            <div class="weather-div">
+              <img
+                class="weather-icon"
+                src="./assets/Sunny-image.png"
+                alt=""
+              /><br />
+              <p class="weather-word">Sunny</p>
+            </div>
+            <p class="wind-speed">50 knots</p>
+          </div>
+
+          <div class="high-low-temp">
+            <p class="high">High: 15 °C</p>
+            <p class="low">Low: 10 °C</p>
+          </div>
+        </div>
+        <div
+          class="tab-pane fade"
+          id="Saturday-tab"
+          role="tabpanel"
+          aria-labelledby="nav-Saturday-tab"
+          tabindex="0"
+        >
+          <div class="cityAndDate">
+            <p class="city">Sydney</p>
+            <p class="date">2023/01/01</p>
+          </div>
+
+          <div class="weather-state">
+            <p>13 °C</p>
+            <div class="weather-div">
+              <img
+                class="weather-icon"
+                src="./assets/Sunny-image.png"
+                alt=""
+              /><br />
+              <p class="weather-word">Sunny</p>
+            </div>
+            <p class="wind-speed">50 knots</p>
+          </div>
+
+          <div class="high-low-temp">
+            <p class="high">High: 15 °C</p>
+            <p class="low">Low: 10 °C</p>
+          </div>
+        </div>
+        <div
+          class="tab-pane fade"
+          id="Sunday-tab"
+          role="tabpanel"
+          aria-labelledby="nav-Sunday-tab"
+          tabindex="0"
+        >
+          <div class="cityAndDate">
+            <p class="city">Sydney</p>
+            <p class="date">2023/01/01</p>
+          </div>
+
+          <div class="weather-state">
+            <p>13 °C</p>
+            <div class="weather-div">
+              <img
+                class="weather-icon"
+                src="./assets/Sunny-image.png"
+                alt=""
+              /><br />
+              <p class="weather-word">Sunny</p>
+            </div>
+            <p class="wind-speed">50 knots</p>
+          </div>
+
+          <div class="high-low-temp">
+            <p class="high">High: 15 °C</p>
+            <p class="low">Low: 10 °C</p>
+          </div>
+        </div>
+      </div>
+      <!-- reviews and FAQS -->
+      <div class="row">
+        <div class="col-6">
+          <div class="col-6">
+            <div class="card">
+              <div id="reviewSlide" class="carousel slide">
+                <div class="carousel-inner">
+                  <div class="carousel-item active" id="reviewSlide1"></div>
+                  <div class="carousel-item" id="reviewSlide2"></div>
+                  <div class="carousel-item" id="reviewSlide3"></div>
+                </div>
+                <button
+                  class="carousel-control-prev"
+                  type="button"
+                  data-bs-target="#reviewSlide"
+                  data-bs-slide="prev"
+                >
+                  <span
+                    class="carousel-control-prev-icon"
+                    aria-hidden="true"
+                  ></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button
+                  class="carousel-control-next"
+                  type="button"
+                  data-bs-target="#reviewSlide"
+                  data-bs-slide="next"
+                >
+                  <span
+                    class="carousel-control-next-icon"
+                    aria-hidden="true"
+                  ></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title text-center">Reviews</h5>
+                <p class="card-text">
+                  Wonderful experience!!!!!!!
+                </p>
+                <img class="star-rating" src="./assets/Group 380.png" alt="" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="accordion" id="faq-accordion">
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseOne"
+                  aria-expanded="true"
+                  aria-controls="collapseOne"
+                >
+                  What can you do on the cruise ship?
+                </button>
+              </h2>
+              <div
+                id="collapseOne"
+                class="accordion-collapse collapse show"
+                data-bs-parent="#accordionExample"
+              >
+                <div class="accordion-body">
+                  You can play shuttle board, fly kites, go to the pool area,
+                  there is a game and dance room for the kids and a bar area.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseTwo"
+                  aria-expanded="false"
+                  aria-controls="collapseTwo"
+                >
+                  How do I book a trip?
+                </button>
+              </h2>
+              <div
+                id="collapseTwo"
+                class="accordion-collapse collapse"
+                data-bs-parent="#accordionExample"
+              >
+                <div class="accordion-body">
+                  Go to trips page click on the plus button for the trip of your
+                  choice. Then go to the basket page and click purchase
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseThree"
+                  aria-expanded="false"
+                  aria-controls="collapseThree"
+                >
+                  How do I look for the 5 most affordable trips?
+                </button>
+              </h2>
+              <div
+                id="collapseThree"
+                class="accordion-collapse collapse"
+                data-bs-parent="#accordionExample"
+              >
+                <div class="accordion-body">
+                  Go to the trips page and click on affordable trips.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-4 contact-us">
+            <h5>Contact us</h5>
+            <a href="">+27 55 555 5555 </a>
+            <a href="">ssc@gmail.com</a>
+          </div>
+          <div class="col-4 copyright">
+            <h3>Copyright © Seagull Star Cruises</h3>
+          </div>
+          <div class="col-4 social">
+            <a href="https://facebook.com/">
+              <img src="./assets/facebook .png" alt="Facebook" />
+            </a>
+            <a href="https://www.instagram.com/">
+              <img src="./assets/instagram-logo.png" alt="instagram-logo" />
+            </a>
+            <a href="https://www.youtube.com/">
+              <img src="./assets/youtube.png" alt="youtube" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="./js/main.js"></script>
+  </body>
+</html>
