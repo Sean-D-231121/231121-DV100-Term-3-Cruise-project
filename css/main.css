@@ -3,6 +3,14 @@
 h1,h2,h3,h4,h5{
     font-family: 'Playfair Display', serif;
 }
+body{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+footer{
+    margin-top: auto;
+}
 *{font-family: 'Alice', serif;
 margin: 0;}
 /* Navigation */
@@ -199,14 +207,17 @@ footer{
 .nav-tabs .nav-link.active{
     background-color: #82c0cc;
 }
-
+.dropdown button:focus{
+    background-color: #82c0cc;
+}
 #nav-tabContent .tab-pane{
-    background-image: url("../assets/Sunny.jpg");
+    background-image: url("../assets/Clear.jpg");
     height: 50Vh;
     background-size: cover;
     background-position: center;
     border-bottom-right-radius:  20px ;
     border-bottom-left-radius:  20px ;
+    background-color: white;
 }
 .tab-pane {
 font-size: 20px;
@@ -225,11 +236,13 @@ font-size: 20px;
     text-align: center;
     margin-top: 20px;
 }
-.cityAndDate .city{
+.cityAndDate .city1{
+    display: inline-block;
     margin-left: 48%;
 }
+
 .cityAndDate .date{
-    margin-left: 30%;
+    margin-left: 20%;
 }
 .weather-state{
     width: 100%;
@@ -242,11 +255,14 @@ font-size: 20px;
 .weather-word{
     display: inline;
     text-align: center;
+    
+}
+.temperature{
+    font-size: 60px;
 }
 .weather-div{
    display: inline-block;
-   width: 20%;
-   margin-left: 20%;
+  margin-left: 20%;
 }
 .high-low-temp{
     width:20%;
@@ -291,7 +307,7 @@ font-size: 20px;
 .trip-filter-div {
    width:100%;
    background-color: #489FB5;
-   margin-top: 50px;
+   margin-top: 10px;
    padding: 5% 5%;
    border-radius: 20px;
    font-size: 11px;
@@ -300,6 +316,24 @@ font-size: 20px;
     margin-left: 5%;
     margin-bottom: 10px;
     text-decoration: underline;
+}
+.sortDropDown{
+    margin-left: 80%;
+    margin-top: 10px;
+}
+.city1 .city-button{
+    background-color: #489FB5;
+
+}
+.city1 .city-button:hover{
+    background-color:#82c0cc;
+
+}
+.sortButton{
+    background-color: #489FB5;
+}
+.sortButton:hover{
+    background-color:#82c0cc;
 }
 .filter-list{
     margin-top: 10px;

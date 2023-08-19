@@ -30,6 +30,19 @@
     </div>
 </nav>
     <div class="container-fluid">
+      <div class="dropdown sortDropDown">
+  <button class="btn dropdown-toggle sortButton" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Price: low to high
+  </button>
+  <ul class="dropdown-menu">
+    <li><button class="dropdown-item" type="button" value="ascendPrice">Price: Low to High</button></li>
+    <li><button class="dropdown-item" type="button" value="descendPrice">Price: High to Low</button></li>
+    <li><button class="dropdown-item" type="button" value="ascendDuration">Duration ascending</button></li>
+    <li><button class="dropdown-item" type="button" value="descendDuration">Duration descending</button></li>
+    <li><button class="dropdown-item" type="button" value="ascendDate">Date ascending</button></li>
+    <li><button class="dropdown-item" type="button" value="descendDate">Date descending</button></li>
+  </ul>
+</div>
       <div class="row">
         <div class="col-3">
             <div class="trip-filter-div">
@@ -37,7 +50,7 @@
                 <h2>Destinations</h2>
                 <div class="row filter-options">
                 <div class="col-6 filter-list">
-                    <img class = "anchor" src="../assets/Anchor-on.png" alt="" value = "all">
+                    <img class = "anchor" src="../assets/Anchor-on.png" alt="" value = "">
                     <p name="Destinations" >All destinations</input>
                 </div>
                 <div class="col-6 filter-list">
@@ -60,13 +73,22 @@
                     <img class = "anchor" src="../assets/Anchor-off.png" alt="" value ="multi">
                     <p name="Destinations" >Multi destinations</p>
                 </div>
+                <div class="col-6 filter-list">
+                    <img class = "anchor" src="../assets/Anchor-off.png" alt="" value ="round">
+                    <p name="Destinations" >Round trip</p>
+                </div>
                 </div>
                 </form>
             </div>
         </div>
         <div class="col-8 cruise-cards">
           <div class="row" id="cruiseTripsList">
-            <template id = "tripsTemplate">
+            
+      </div>
+      </div>
+      </div>
+    </div>
+    <template id = "tripsTemplate">
           <div class="col-4">
             <div class="card">
             <div class="cruise-image" id="specific-cruise-image">
@@ -82,11 +104,12 @@
         </div>
        </div>
        </template>
-      </div>
-      </div>
-      </div>
-    </div>
-    <footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="../js/main.js"></script>
+  </body>
+  <footer>
     <div class="container-fluid">
         <div class="row">
           <div class="col-4 contact-us">
@@ -99,7 +122,7 @@
           </div>
           <div class="col-4 social">
             <a href="https://facebook.com/">
-              <img src="../assets/facebook .png" alt="Facebook" />
+              <img src="../assets/facebook.png" alt="Facebook" />
             </a>
             <a href="https://www.instagram.com/">
               <img src="../assets/instagram-logo.png" alt="instagram-logo" /> 
@@ -111,10 +134,4 @@
         </div>
       </div>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-    <script src="../js/main.js"></script>
-  </body>
 </html>

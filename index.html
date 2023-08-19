@@ -129,107 +129,29 @@
           <button id="book-trip-button">Book trip</button>
         </div>
       </div>
-      <div class="nav nav-tabs" id="nav-tab" role="tablist">
-        <button
-          class="nav-link active"
-          id="Monday"
-          data-bs-toggle="tab"
-          data-bs-target="#Monday-tab"
-          type="button"
-          role="tab"
-          aria-controls="Monday-tab"
-          aria-selected="true"
-        >
-          Monday
-        </button>
-        <button
-          class="nav-link"
-          id="Tuesday"
-          data-bs-toggle="tab"
-          data-bs-target="#Tuesday-tab"
-          type="button"
-          role="tab"
-          aria-controls="Tuesday-tab"
-          aria-selected="false"
-        >
-          Tuesday
-        </button>
-        <button
-          class="nav-link"
-          id="Wednesday"
-          data-bs-toggle="tab"
-          data-bs-target="#Wednesday-tab"
-          type="button"
-          role="tab"
-          aria-controls="Wednesday-tab"
-          aria-selected="false"
-        >
-          Wednesday
-        </button>
-        <button
-          class="nav-link"
-          id="Thursday"
-          data-bs-toggle="tab"
-          data-bs-target="#Thursday-tab"
-          type="button"
-          role="tab"
-          aria-controls="Thursday-tab"
-          aria-selected="false"
-        >
-          Thursday
-        </button>
-        <button
-          class="nav-link"
-          id="Friday"
-          data-bs-toggle="tab"
-          data-bs-target="#Friday-tab"
-          type="button"
-          role="tab"
-          aria-controls="Friday-tab"
-          aria-selected="false"
-        >
-          Friday
-        </button>
-        <button
-          class="nav-link"
-          id="Saturday"
-          data-bs-toggle="tab"
-          data-bs-target="#Saturday-tab"
-          type="button"
-          role="tab"
-          aria-controls="Saturday-tab"
-          aria-selected="false"
-        >
-          Saturday
-        </button>
-        <button
-          class="nav-link"
-          id="Sunday"
-          data-bs-toggle="tab"
-          data-bs-target="#Sunday-tab"
-          type="button"
-          role="tab"
-          aria-controls="Sunday-tab"
-          aria-selected="false"
-        >
-          Sunday
-        </button>
-      </div>
+      
       <div class="tab-content" id="nav-tabContent">
         <div
           class="tab-pane fade show active"
           id="Monday-tab"
-          role="tabpanel"
-          aria-labelledby="nav-Monday-tab"
-          tabindex="0"
         >
           <div class="cityAndDate">
-            <p class="city">Sydney</p>
+            <div class="dropdown city1">
+  <button class="btn dropdown-toggle city-button" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Brisbane
+  </button>
+  <ul class="dropdown-menu ">
+    <li><button class="dropdown-item " type="button">Brisbane</button></li>
+    <li><button class="dropdown-item " type="button">Coffs Harbour</button></li>
+    <li><button class="dropdown-item " type="button">Port Macquarie</button></li>
+    <li><button class="dropdown-item " type="button">Sydney</button></li>
+  </ul>
+</div>
             <p class="date">2023/01/01</p>
           </div>
 
           <div class="weather-state">
-            <p>13 °C</p>
+            <p class="temperature">13 °C</p>
             <div class="weather-div">
               <img
                 class="weather-icon"
@@ -246,186 +168,7 @@
             <p class="low">Low: 10 °C</p>
           </div>
         </div>
-        <div
-          class="tab-pane fade"
-          id="Tuesday-tab"
-          role="tabpanel"
-          aria-labelledby="nav-Tuesday-tab"
-          tabindex="0"
-        >
-          <div class="cityAndDate">
-            <p class="city">Sydney</p>
-            <p class="date">2023/01/01</p>
-          </div>
-
-          <div class="weather-state">
-            <p>13 °C</p>
-            <div class="weather-div">
-              <img
-                class="weather-icon"
-                src="./assets/Sunny-image.png"
-                alt=""
-              /><br />
-              <p class="weather-word">Sunny</p>
-            </div>
-            <p class="wind-speed">50 knots</p>
-          </div>
-
-          <div class="high-low-temp">
-            <p class="high">High: 15 °C</p>
-            <p class="low">Low: 10 °C</p>
-          </div>
-        </div>
-        <div
-          class="tab-pane fade"
-          id="Wednesday-tab"
-          role="tabpanel"
-          aria-labelledby="nav-Wednesday-tab"
-          tabindex="0"
-        >
-          <div class="cityAndDate">
-            <p class="city">Sydney</p>
-            <p class="date">2023/01/01</p>
-          </div>
-
-          <div class="weather-state">
-            <p>13 °C</p>
-            <div class="weather-div">
-              <img
-                class="weather-icon"
-                src="./assets/Sunny-image.png"
-                alt=""
-              /><br />
-              <p class="weather-word">Sunny</p>
-            </div>
-            <p class="wind-speed">50 knots</p>
-          </div>
-
-          <div class="high-low-temp">
-            <p class="high">High: 15 °C</p>
-            <p class="low">Low: 10 °C</p>
-          </div>
-        </div>
-        <div
-          class="tab-pane fade"
-          id="Thursday-tab"
-          role="tabpanel"
-          aria-labelledby="nav-Thursday-tab"
-          tabindex="0"
-        >
-          <div class="cityAndDate">
-            <p class="city">Sydney</p>
-            <p class="date">2023/01/01</p>
-          </div>
-
-          <div class="weather-state">
-            <p>13 °C</p>
-            <div class="weather-div">
-              <img
-                class="weather-icon"
-                src="./assets/Sunny-image.png"
-                alt=""
-              /><br />
-              <p class="weather-word">Sunny</p>
-            </div>
-            <p class="wind-speed">50 knots</p>
-          </div>
-
-          <div class="high-low-temp">
-            <p class="high">High: 15 °C</p>
-            <p class="low">Low: 10 °C</p>
-          </div>
-        </div>
-        <div
-          class="tab-pane fade"
-          id="Friday-tab"
-          role="tabpanel"
-          aria-labelledby="nav-Friday-tab"
-          tabindex="0"
-        >
-          <div class="cityAndDate">
-            <p class="city">Sydney</p>
-            <p class="date">2023/01/01</p>
-          </div>
-
-          <div class="weather-state">
-            <p>13 °C</p>
-            <div class="weather-div">
-              <img
-                class="weather-icon"
-                src="./assets/Sunny-image.png"
-                alt=""
-              /><br />
-              <p class="weather-word">Sunny</p>
-            </div>
-            <p class="wind-speed">50 knots</p>
-          </div>
-
-          <div class="high-low-temp">
-            <p class="high">High: 15 °C</p>
-            <p class="low">Low: 10 °C</p>
-          </div>
-        </div>
-        <div
-          class="tab-pane fade"
-          id="Saturday-tab"
-          role="tabpanel"
-          aria-labelledby="nav-Saturday-tab"
-          tabindex="0"
-        >
-          <div class="cityAndDate">
-            <p class="city">Sydney</p>
-            <p class="date">2023/01/01</p>
-          </div>
-
-          <div class="weather-state">
-            <p>13 °C</p>
-            <div class="weather-div">
-              <img
-                class="weather-icon"
-                src="./assets/Sunny-image.png"
-                alt=""
-              /><br />
-              <p class="weather-word">Sunny</p>
-            </div>
-            <p class="wind-speed">50 knots</p>
-          </div>
-
-          <div class="high-low-temp">
-            <p class="high">High: 15 °C</p>
-            <p class="low">Low: 10 °C</p>
-          </div>
-        </div>
-        <div
-          class="tab-pane fade"
-          id="Sunday-tab"
-          role="tabpanel"
-          aria-labelledby="nav-Sunday-tab"
-          tabindex="0"
-        >
-          <div class="cityAndDate">
-            <p class="city">Sydney</p>
-            <p class="date">2023/01/01</p>
-          </div>
-
-          <div class="weather-state">
-            <p>13 °C</p>
-            <div class="weather-div">
-              <img
-                class="weather-icon"
-                src="./assets/Sunny-image.png"
-                alt=""
-              /><br />
-              <p class="weather-word">Sunny</p>
-            </div>
-            <p class="wind-speed">50 knots</p>
-          </div>
-
-          <div class="high-low-temp">
-            <p class="high">High: 15 °C</p>
-            <p class="low">Low: 10 °C</p>
-          </div>
-        </div>
+      
       </div>
       <!-- reviews and FAQS -->
       <div class="row">
@@ -563,7 +306,7 @@
           </div>
           <div class="col-4 social">
             <a href="https://facebook.com/">
-              <img src="./assets/facebook .png" alt="Facebook" />
+              <img src="./assets/facebook.png" alt="Facebook" />
             </a>
             <a href="https://www.instagram.com/">
               <img src="./assets/instagram-logo.png" alt="instagram-logo" />
