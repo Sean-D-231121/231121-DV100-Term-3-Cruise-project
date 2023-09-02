@@ -415,7 +415,7 @@ loadCartTripCards = (showTrips) => {
 
     $(currentTrip)
       .find("#subTotal")
-      .text("R " + tripCartCard.price);
+      .text("R " + tripCartCard.price*tripCartCard.ticket);
   }
   $("#cards-checkout").empty();
 
