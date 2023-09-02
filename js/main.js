@@ -17,6 +17,7 @@ let cruisesArray = [
     roundTrip: false,
     ticket: 0,
     departure: "2024-01-20",
+    ticketCode: 1,
   },
   {
     cruiseName: "2 Week trip on the Indian ocean",
@@ -36,6 +37,7 @@ let cruisesArray = [
     roundTrip: false,
     ticket: 0,
     departure: "2024-02-10",
+    ticketCode: 2,
   },
   {
     cruiseName: "Trip from New Zealand to Australia",
@@ -52,6 +54,7 @@ let cruisesArray = [
     roundTrip: false,
     ticket: 0,
     departure: "2024-01-15",
+    ticketCode: 3,
   },
   {
     cruiseName: "Trip from Cape Town to Mauritius and back",
@@ -68,6 +71,7 @@ let cruisesArray = [
     roundTrip: false,
     ticket: 0,
     departure: "2023-10-10",
+    ticketCode: 4,
   },
   {
     cruiseName: "Trip around Australia",
@@ -93,6 +97,7 @@ let cruisesArray = [
     roundTrip: true,
     ticket: 0,
     departure: "2024-05-03",
+    ticketCode: 5,
   },
   {
     cruiseName: "Trip around South Africa",
@@ -115,6 +120,7 @@ let cruisesArray = [
     roundTrip: true,
     ticket: 0,
     departure: "2024-03-10",
+    ticketCode: 6,
   },
   {
     cruiseName: "Durban to Mauritius",
@@ -132,6 +138,7 @@ let cruisesArray = [
     roundTrip: false,
     ticket: 0,
     departure: "2024-02-21",
+    ticketCode: 7,
   },
   {
     cruiseName: "Namibia to Mozambique",
@@ -155,6 +162,7 @@ let cruisesArray = [
     roundTrip: false,
     ticket: 0,
     departure: "2024-01-25",
+    ticketCode: 8,
   },
   {
     cruiseName: "Cape Town to Port Elizabeth",
@@ -171,6 +179,7 @@ let cruisesArray = [
     roundTrip: false,
     ticket: 0,
     departure: "-2023-11-21",
+    ticketCode: 9,
   },
   {
     cruiseName: "Melbourne to Perth",
@@ -187,11 +196,14 @@ let cruisesArray = [
     roundTrip: false,
     ticket: 0,
     departure: "2023-10-20",
+    ticketCode: 10,
   },
 ];
+let CruiseCart = [];
+let checkLocal = JSON.parse(localStorage.getItem("cruises"));
 let filter = "";
 let sorter = "ascendPrice";
-let sortWord = "Price: Low to High"
+let sortWord = "Price: Low to High";
 let onLoadCity = cruisesArray[0];
 let city = onLoadCity.cruiseDestinations[0][0];
 let getTodayDate = new Date();
@@ -199,53 +211,108 @@ let day = getTodayDate.getDate();
 let month = getTodayDate.getMonth();
 let year = getTodayDate.getFullYear();
 let setDate = day + "/" + month + "/" + year;
+let CartCruiseTable = [];
+let filterSortArray = [];
+
+if (checkLocal !== null) {
+  CruiseCart = CruiseCart.concat(checkLocal);
+  for (let i = 0; i < CruiseCart.length; i++) {
+    const storedCruises = CruiseCart[i];
+    for (let i = 0; i < cruisesArray.length; i++) {
+      const defaultCruise = cruisesArray[i];
+      if (storedCruises.cruiseName === defaultCruise.cruiseName) {
+        defaultCruise.ticket = storedCruises.ticket;
+      }
+    }
+  }
+}
 $(document).ready(function () {
+  checkInCart();
   loadHoverLogo();
   anchorCheck();
   loadTripCards(cruisesArray);
   checkCart();
   $("#map-trip-name").text(onLoadCity.cruiseName);
   getCity();
+
+  $(window).on("load", function () {
+    CartCruiseTable = JSON.parse(localStorage.getItem("cruises"));
+    if (CartCruiseTable !== null) {
+      loadCartTripCards(CartCruiseTable);
+    }
+   
+  });
+  removeAll();
+  cardHover();
+  ticketFunctions();
+   checkCartNull();
 });
- $.ajax({
-   type: "GET",
-   url:
-     "https://api.openweathermap.org/data/2.5/weather?q=" +
-     city +
-     "&appid=7dad567f32f0c50139fd842d1d92fba0",
-   success: function (data) {
-     temp = data;
-     console.log(temp.weather[0].main);
-   },
- }).done(function () {
-   $("#Monday-tab")
-     .find(".temperature")
-     .text(Math.round(temp.main.temp - 273) + "°C");
-   $("#Monday-tab").find(".date").text(setDate);
-   $("#Monday-tab").find(".city").text(city);
-   $("#Monday-tab")
-     .find(".high")
-     .text("High: " + Math.round(temp.main.temp_max - 273) + " °C");
-   $("#Monday-tab")
-     .find(".low")
-     .text("Low: " + Math.round(temp.main.temp_min - 273) + " °C");
-   $("#Monday-tab")
-     .find(".wind-speed")
-     .text("Wind speed: " + Math.round(temp.wind.speed * 1.943844) + " knots");
-   $("#Monday-tab").find(".weather-word").text(temp.weather[0].main);
-   checkCurrentWeatherInfo(temp.weather[0].main);
- });
+cardHover = () => {
+$(".trip-card").hover(
+  function () {
+    $(this).css("background-color", "#489FB5");
+    $(this).find("#description").fadeTo("fast","1")
+  },
+  function () {
+    $(this).css("background-color", "#82c0cc");
+    $(this).find("#description").fadeTo("fast", "0");
+  }
+);
+}
+
+checkInCart = () => {
+  let currentStorage = JSON.parse(localStorage.getItem("cruises"));
+  if (currentStorage !== null) {
+    for (let i = 0; i < currentStorage.length; i++) {
+      const setCartState = currentStorage[i];
+      for (let j = 0; j < cruisesArray.length; j++) {
+        const foundName = cruisesArray[j];
+        if (setCartState.cruiseName === foundName.cruiseName) {
+          foundName.cart = true;
+        }
+      }
+    }
+  } else {
+    return;
+  }
+};
+$.ajax({
+  type: "GET",
+  url:
+    "https://api.openweathermap.org/data/2.5/weather?q=" +
+    city +
+    "&appid=7dad567f32f0c50139fd842d1d92fba0",
+  success: function (data) {
+    temp = data;
+    console.log(temp.weather[0].main);
+  },
+}).done(function () {
+  $("#Monday-tab")
+    .find(".temperature")
+    .text(Math.round(temp.main.temp - 273) + "°C");
+  $("#Monday-tab").find(".date").text(setDate);
+  $("#Monday-tab").find(".city").text(city);
+  $("#Monday-tab")
+    .find(".high")
+    .text("High: " + Math.round(temp.main.temp_max - 273) + " °C");
+  $("#Monday-tab")
+    .find(".low")
+    .text("Low: " + Math.round(temp.main.temp_min - 273) + " °C");
+  $("#Monday-tab")
+    .find(".wind-speed")
+    .text("Wind speed: " + Math.round(temp.wind.speed * 1.943844) + " knots");
+  $("#Monday-tab").find(".weather-word").text(temp.weather[0].main);
+  checkCurrentWeatherInfo(temp.weather[0].main);
+});
 // Change Logo image to hover logo image
 loadHoverLogo = () => {
   if (document.location.href.match("./index.html")) {
     $(".navbar-brand").hover(
       function () {
         $(this).find("img").attr("src", "../assets/Logo-hover.png");
-        
       },
       function () {
-         $(this).find("img").attr("src", "../assets/Logo-normal.png");
-        
+        $(this).find("img").attr("src", "../assets/Logo-normal.png");
       }
     );
   } else {
@@ -260,30 +327,121 @@ loadHoverLogo = () => {
   }
 };
 // Loads trip cards using the object array cruiseArray
-loadTripCards = (showTrips) =>{
+loadTripCards = (showTrips) => {
+  
   $("#cruiseTripsList").empty();
 
   for (let i = 0; i < showTrips.length; i++) {
     const tripCard = showTrips[i];
     $("#cruiseTripsList").append($("#tripsTemplate").html());
-
+    
     let currentTrip = $("#cruiseTripsList").children().eq(i);
-    $(currentTrip).find("#specific-cruise-image").css("background-image", 'url('+"../assets/" +tripCard.images +')');
+    $(currentTrip)
+      .find("#specific-cruise-image")
+      .css("background-image", "url(" + "../assets/" + tripCard.images + ")");
     if (tripCard.cruiseName.length > 30) {
-      $(currentTrip).find("#trip-name").text(tripCard.cruiseName.substring(0,30) + "...");
-    } else{
-         $(currentTrip).find("#trip-name").text(tripCard.cruiseName);
+      $(currentTrip)
+        .find("#trip-name")
+        .text(tripCard.cruiseName.substring(0, 30) + "...");
+    } else {
+      $(currentTrip).find("#trip-name").text(tripCard.cruiseName);
     }
     if (tripCard.description.length > 50) {
-      $(currentTrip).find("#description").text(tripCard.description.substring(0,50) + "...");
+      $(currentTrip)
+        .find("#description")
+        .text(tripCard.description.substring(0, 50) + "...");
+        $(currentTrip)
+          .find("#description").css("opacity", "0");
     } else {
       $(currentTrip).find("#description").text(tripCard.description);
+      $(currentTrip).find("#description").css("opacity", "0");
+      
     }
-    $(currentTrip).find("#card-price").text("R " + tripCard.price);
-    $(currentTrip).find("#trip-duration").text("Duration: "+tripCard.duration+ " days");
-    
+    $(currentTrip)
+      .find("#card-price")
+      .text("R " + tripCard.price);
+    $(currentTrip)
+      .find("#trip-duration")
+      .text("Duration: " + tripCard.duration + " days");
+    if (tripCard.cart === true) {
+      $(currentTrip).find("#cart-add-button").text("-");
+      $(currentTrip).find(".ticketTrip").show();
+      $(currentTrip).find("#currentCruiseTickets").text(tripCard.ticket);
+    } else {
+      $(currentTrip).find("#cart-add-button").text("+");
+      $(currentTrip).find(".ticketTrip").hide();
+      $(currentTrip).find("#currentCruiseTickets").text(tripCard.ticket);
+    }
+    ticketFunctions()
+  }
+};
+
+// Removes all values from CruiseCart, localStorage and CruiseCartTable
+removeAll = () => {
+  $("#remove").click(function () {
+    localStorage.removeItem("cruises");
+    CruiseCart = [];
+    cruiseCartTable = [];
+    loadCartTripCards(CruiseCart);
+  });
+};
+checkCartNull = () =>{
+  if($("#cards-checkout").children().length === 0){
+    $("#cards-checkout").append('<h1 class="showNothing">Nothing is here</h1>')
+  }else{
+    $(".showNothing").remove();
   }
 }
+// Loads trip cards and tables in checkout.html
+loadCartTripCards = (showTrips) => {
+ 
+  $("#tableBody").empty();
+  let finalPrice = 0;
+  for (let i = 0; i < showTrips.length; i++) {
+    const tripCartCard = showTrips[i];
+    $("#tableBody").append($("#tableRowTemp").html());
+
+    let currentTrip = $("#tableBody").children().eq(i);
+    $(currentTrip).find("#ticketCode").text(tripCartCard.ticketCode);
+    if (tripCartCard.cruiseName.length > 30) {
+      $(currentTrip)
+        .find("#tableTicketName")
+        .text(tripCartCard.cruiseName.substring(0, 30) + "...");
+    } else {
+      $(currentTrip).find("#tableTicketName").text(tripCartCard.cruiseName);
+    }
+
+    $(currentTrip).find("#tableTicketQuantity").text(tripCartCard.ticket);
+
+    $(currentTrip)
+      .find("#subTotal")
+      .text("R " + tripCartCard.price);
+  }
+  $("#cards-checkout").empty();
+
+  for (let i = 0; i < showTrips.length; i++) {
+    const tripCard = showTrips[i];
+    $("#cards-checkout").append($("#horizontal-card-temp").html());
+
+    let currentTrip = $("#cards-checkout").children().eq(i);
+    $(currentTrip)
+      .find("#horizontal-card-image")
+      .css("background-image", "url(" + "../assets/" + tripCard.images + ")");
+    if (tripCard.cruiseName.length > 30) {
+      $(currentTrip)
+        .find("#horizontal-cruise-name")
+        .text(tripCard.cruiseName.substring(0, 30) + "...");
+    } else {
+      $(currentTrip).find("#horizontal-cruise-name").text(tripCard.cruiseName);
+    }
+    $(currentTrip)
+      .find("#horizontal-card-price")
+      .text("R " + tripCard.price);
+    $(currentTrip).find("#ticket-counter").text(tripCard.ticket);
+    finalPrice += (tripCard.price * tripCard.ticket);
+  }
+  $(".finalPrice").text("Total: R "+ finalPrice)
+};
 // Determines which anchor in trip-filter-div is active and gets the value
 $(".filter-list").on("click", ".anchor", function () {
   filter = $(this).attr("value");
@@ -297,116 +455,230 @@ $(".filter-list").on("click", ".anchor", function () {
       element.find(".anchor").attr("src", "../assets/Anchor-off.png");
     }
   }
-  anchorCheck()
+  anchorCheck();
 });
-anchorCheck = () =>{
-  let filterSortArray =[];
+anchorCheck = () => {
+  cardHover();
   
-  
-    if(filter){
-      if(filter === "Affordable"){
-        filterSortArray = getCheapTrips();
-        
-      }
-      else if(filter === "short"){
-        filterSortArray = cruisesArray.filter(cruise => cruise.duration <= 5);
-      }
-      else if(filter === "long"){
-        filterSortArray = cruisesArray.filter(cruise => cruise.duration > 5);
-      }
-      else if(filter === "single"){
-        filterSortArray =  cruisesArray.filter(cruise => cruise.cruiseDestinations.length === 2);
-      }
-      else if(filter === "multi"){
-        filterSortArray = cruisesArray.filter(cruise => cruise.cruiseDestinations.length > 2);
-      }
-      else if(filter === "round"){
-        filterSortArray = cruisesArray.filter(cruise => cruise.roundTrip === true)
-      }
+
+  if (filter) {
+    if (filter === "Affordable") {
+      filterSortArray = getCheapTrips();
+    } else if (filter === "short") {
+      filterSortArray = cruisesArray.filter((cruise) => cruise.duration <= 5);
+    } else if (filter === "long") {
+      filterSortArray = cruisesArray.filter((cruise) => cruise.duration > 5);
+    } else if (filter === "single") {
+      filterSortArray = cruisesArray.filter(
+        (cruise) => cruise.cruiseDestinations.length === 2
+      );
+    } else if (filter === "multi") {
+      filterSortArray = cruisesArray.filter(
+        (cruise) => cruise.cruiseDestinations.length > 2
+      );
+    } else if (filter === "round") {
+      filterSortArray = cruisesArray.filter(
+        (cruise) => cruise.roundTrip === true
+      );
     }
-    else{
-      filterSortArray = cruisesArray
+  } else {
+    filterSortArray = cruisesArray;
+  }
+  if (sorter === "ascendPrice") {
+    filterSortArray = filterSortArray.sort((a, b) => {
+      return a.price - b.price;
+    });
+  } else if (sorter === "descendPrice") {
+    filterSortArray = filterSortArray.sort((a, b) => {
+      return b.price - a.price;
+    });
+  } else if (sorter === "ascendDuration") {
+    filterSortArray = filterSortArray.sort((a, b) => {
+      return a.duration - b.duration;
+    });
+  } else if (sorter === "descendDuration") {
+    filterSortArray = filterSortArray.sort((a, b) => {
+      return b.duration - a.duration;
+    });
+  } else if (sorter === "ascendDate") {
+    filterSortArray = filterSortArray.sort((a, b) => {
+      let departureSortA = new Date(a.departure);
+      let departureSortB = new Date(b.departure);
+      return departureSortA - departureSortB;
+    });
+  } else if (sorter === "descendDate") {
+    filterSortArray = filterSortArray.sort((a, b) => {
+      let departureSortA = new Date(a.departure);
+      let departureSortB = new Date(b.departure);
+      return departureSortB - departureSortA;
+    });
+  }
+  loadTripCards(filterSortArray);
+  checkCart(filterSortArray);
+  $(".sortButton").text(sortWord);
+  ticketFunctions();
+};
+
+ticketFunctions = () =>{
+  // subtract tickets on trips page
+  $(".trip-Minus").click(function () {
+    let cardCheckIndex = $(this).closest(".col-4").index();
+    console.log(cardCheckIndex)
+    let getName = filterSortArray[cardCheckIndex].cruiseName;
+    console.log(getName)
+    let cruiseIndex = getCruiseArrayObject(getName);
+    console.log(cruiseIndex)
+    let toGetCruiseCartName = getCruiseCartName(
+      filterSortArray[cardCheckIndex].cruiseName
+    );
+    if(CruiseCart[toGetCruiseCartName].ticket > 1){
+    
+    cruisesArray[cruiseIndex].ticket -= 1;
+    CruiseCart[toGetCruiseCartName].ticket = cruisesArray[cruiseIndex].ticket;
     }
-    if (sorter === "ascendPrice") {
-      filterSortArray = filterSortArray.sort((a, b) => {
-        return a.price - b.price;
-      });
-    } else if (sorter === "descendPrice") {
-      filterSortArray = filterSortArray.sort((a, b) => {
-        return b.price - a.price;
-      });
-    } else if (sorter === "ascendDuration") {
-      filterSortArray = filterSortArray.sort((a, b) => {
-        return a.duration - b.duration;
-      });
-    } else if (sorter === "descendDuration") {
-      filterSortArray = filterSortArray.sort((a, b) => {
-        return b.duration - a.duration;
-      });
-    } else if (sorter === "ascendDate") {
-      filterSortArray = filterSortArray.sort((a, b) => {
-        let departureSortA = new Date(a.departure);
-        let departureSortB = new Date(b.departure);
-        return departureSortA - departureSortB;
-      });
-    } else if (sorter === "descendDate") {
-      filterSortArray = filterSortArray.sort((a, b) => {
-        let departureSortA = new Date(a.departure);
-        let departureSortB = new Date(b.departure);
-        return departureSortB - departureSortA;
-      });
-    }
-    loadTripCards(filterSortArray);
-    checkCart(filterSortArray);
-    $(".sortButton").text(sortWord);
-  
+    
+
+    getCartInfo();
+    anchorCheck();
+  });
+   $(".tripPlus").click(function () {
+     let cardCheckIndex = $(this).closest(".col-4").index();
+     console.log(cardCheckIndex);
+     let getName = filterSortArray[cardCheckIndex].cruiseName;
+     console.log(getName);
+     let cruiseIndex = getCruiseArrayObject(getName);
+     console.log(cruiseIndex);
+     let toGetCruiseCartName = getCruiseCartName(
+       filterSortArray[cardCheckIndex].cruiseName
+     );
+     if (CruiseCart[toGetCruiseCartName].ticket < 10){
+       
+        cruisesArray[cruiseIndex].ticket += 1;
+        CruiseCart[toGetCruiseCartName].ticket = cruisesArray[cruiseIndex].ticket;
+     }
+
+     getCartInfo();
+     anchorCheck();
+   });
 }
-getCheapTrips = () =>{
-let cheapTrips = [];
-cheapTrips = cruisesArray
-cheapTrips = cheapTrips.sort((a,b) =>{
-  let CruiseASort = a.price;
-  let CruiseBSort = b.price;
-  return CruiseASort - CruiseBSort;
-})
-return cheapTrips.slice(0,5);
-  
+getCruiseCartName = (getName) =>{
+  for (let i = 0; i < CruiseCart.length; i++) {
+    const element = CruiseCart[i];
+    if(getName === element.cruiseName){
+      return i
+    }
+  }
 }
 
-  $(".sortDropDown").on('click','.dropdown-item',function(){
-    sorter =$(this).attr("value");
-    sortWord = $(this).text();
-    anchorCheck();
-    
+// Card interactions on basket page
+$("#cards-checkout").on("click","#deleteCard", function(){
+  let cardCheckIndex = $(this).closest(".cartCard").index();
+  CruiseCart.splice(cardCheckIndex,1);
+  getCartInfo();
+  loadCartTripCards(CruiseCart)
+})
+$("#tableBody").on("click", "#deduct", function () {
+  let tableCheckIndex = $(this).closest("tr").index();
+  CruiseCart.splice(tableCheckIndex, 1);
+  getCartInfo();
+  loadCartTripCards(CruiseCart);
+});
+$("#cards-checkout").on("click","#plus", function(){
+  let cardCheckIndex = $(this).closest(".cartCard").index();
+  if(CruiseCart[cardCheckIndex].ticket < 10){
+  CruiseCart[cardCheckIndex].ticket += 1;
+  }
+  getCartInfo();
+  loadCartTripCards(CruiseCart);
+})
+$("#cards-checkout").on("click", "#minus", function () {
+  let cardCheckIndex = $(this).closest(".cartCard").index();
+  if (CruiseCart[cardCheckIndex].ticket > 1){
+    CruiseCart[cardCheckIndex].ticket -= 1;
+  }
+  
+  getCartInfo();
+  loadCartTripCards(CruiseCart);
+});
+getCheapTrips = () => {
+  let cheapTrips = [];
+  cheapTrips = cruisesArray;
+  cheapTrips = cheapTrips.sort((a, b) => {
+    let CruiseASort = a.price;
+    let CruiseBSort = b.price;
+    return CruiseASort - CruiseBSort;
   });
- 
+  return cheapTrips.slice(0, 5);
+};
+
+$(".sortDropDown").on("click", ".dropdown-item", function () {
+  sorter = $(this).attr("value");
+  sortWord = $(this).text();
+  anchorCheck();
+});
+
 // toggles the plus or minus button on trip card and sets the cart to either true or false
 checkCart = (checkedCartArray) => {
-  if (!checkedCartArray){
-    checkedCartArray = cruisesArray
+  cardHover();
+  let cruiseArrayFind;
+  if (!checkedCartArray) {
+    checkedCartArray = cruisesArray;
   }
   let getIndex;
   $(".cart-plus-button").click(function () {
     if ($(this).text() === "+") {
       $(this).text("-");
       getIndex = $(this).closest(".col-4").index();
-      checkedCartArray[getIndex].cart = true;
+      cruiseArrayFind = getCruiseArrayObject(
+        checkedCartArray[getIndex].cruiseName
+      );
+      cruisesArray[cruiseArrayFind].cart = true;
+      cruisesArray[cruiseArrayFind].ticket += 1;
+      CruiseCart.push(cruisesArray[cruiseArrayFind]);
+      anchorCheck();
+      console.log(CruiseCart);
+      getCartInfo();
     } else {
       $(this).text("+");
       getIndex = $(this).closest(".col-4").index();
-      checkedCartArray[getIndex].cart = false;
+      cruiseArrayFind = getCruiseArrayObject(
+        checkedCartArray[getIndex].cruiseName
+      );
+      cruisesArray[cruiseArrayFind].cart = false;
+      cruisesArray[cruiseArrayFind].ticket = 0;
+      for (let j = 0; j < CruiseCart.length; j++) {
+        const checkForUnchecked = CruiseCart[j];
+        if (
+          cruisesArray[cruiseArrayFind].cruiseName ===
+          checkForUnchecked.cruiseName
+        ) {
+          CruiseCart.splice(j, 1);
+          console.log(CruiseCart);
+          getCartInfo();
+          anchorCheck();
+          return;
+        }
+      }
     }
-    console.log(checkedCartArray[getIndex].cruiseName);
-    console.log(checkedCartArray[getIndex].cart);
   });
-}
-getCity = () =>{
+};
+// searches through cruisesArray to find matching name and returns index
+getCruiseArrayObject = (cruiseGetName) => {
+  for (let i = 0; i < cruisesArray.length; i++) {
+    const cruiseTrip = cruisesArray[i];
+    if (cruiseTrip.cruiseName === cruiseGetName) {
+      return i;
+    }
+  }
+};
+// Gets the city selected by the dropdown and sets the temperature
+getCity = () => {
   let cityVal;
-  $(".city1").on("click",".dropdown-item", function(){
+  $(".city1").on("click", ".dropdown-item", function () {
     cityVal = $(this).parent().index();
     console.log(cityVal);
     city = onLoadCity.cruiseDestinations[cityVal][0];
-    console.log(city)
+    console.log(city);
     $.ajax({
       type: "GET",
       url:
@@ -438,28 +710,38 @@ getCity = () =>{
       checkCurrentWeatherInfo(temp.weather[0].main);
     });
     $(".city-button").text(city);
-  })
-}
-checkCurrentWeatherInfo = (weatherWord) =>{
+  });
+};
+// set current weather to a certain image when a particular word is entered
+checkCurrentWeatherInfo = (weatherWord) => {
   if (weatherWord === "Clear") {
-        $(".tab-pane").css(
-          "background-image",
-          "url(" + "../assets/Clear.jpg" + ")"
-        );
-        $(".weather-icon").attr("src","./assets/sunny-image.png")
-      } else if (weatherWord === "Clouds") {
-        $(".tab-pane").css(
-          "background-image",
-          "url(" + "../assets/Cloudy.jpg" + ")"
-        );
-        $(".weather-icon").attr("src", "./assets/cloud.png");
-        $(".tab-pane").css("color", "white");
-      } else if (weatherWord === "Rain") {
-        $(".tab-pane").css(
-          "background-image",
-          "url(" + "../assets/Raining.jpg" + ")"
-        );
-         $(".weather-icon").attr("src", "./assets/raining.png");
-        $(".tab-pane ").css("color", "white");
-      }
-}
+    $(".tab-pane").css(
+      "background-image",
+      "url(" + "../assets/Clear.jpg" + ")"
+    );
+    $(".weather-icon").attr("src", "./assets/sunny-image.png");
+    $(".tab-pane").css("color", "black");
+  } else if (weatherWord === "Clouds") {
+    $(".tab-pane").css(
+      "background-image",
+      "url(" + "../assets/Cloudy.jpg" + ")"
+    );
+    $(".weather-icon").attr("src", "./assets/cloud.png");
+    $(".tab-pane").css("color", "white");
+  } else if (weatherWord === "Rain") {
+    $(".tab-pane").css(
+      "background-image",
+      "url(" + "../assets/Raining.jpg" + ")"
+    );
+    $(".weather-icon").attr("src", "./assets/raining.png");
+    $(".tab-pane ").css("color", "white");
+  }
+};
+getCartInfo = () => {
+  if (CruiseCart.length > 0) {
+    let cruiseInfo = JSON.stringify(CruiseCart);
+    localStorage.setItem("cruises", cruiseInfo);
+  } else {
+    localStorage.removeItem("cruises");
+  }
+};

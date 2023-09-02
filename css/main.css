@@ -378,6 +378,7 @@ font-size: 20px;
    margin-top: 28%;
    font-weight: 700;
    color: white;
+   display: inline-block;
 }
 #cart-add-button{
     display: inline-block;
@@ -388,6 +389,20 @@ font-size: 20px;
     color: white;
     background-color: transparent;
     border: none;
+}
+.ticketTrip{
+    display: inline-block;
+    margin-left: 90px;
+    font-size: 30px;
+    color: white;
+    font-weight: 700;
+}
+.ticketTrip button{
+    background-color:  transparent;
+    color: white;
+    border:none;
+    font-size: 30px;
+    font-weight: 700;
 }
 .cruise-image{
     position: relative;
@@ -412,5 +427,97 @@ font-size: 20px;
     top: 10px;
     display: inline-block;
 }
+.horizontal-price-and-ticket{
+    margin-top: 80px;
+    font-size: 20px;
+}
+.horizontal-price-and-ticket .price-horizontal{
+    text-align: left;
+    
+}
 
+.tickets{
+   font-size:  25px;
+   display: inline-block;
+   
+}
+.Minus{
+    background-color: transparent;
+    border: none;
+    margin-right: 10px;
+    font-size: 30px;
+}
+.Plus{
+    border: none;
+    background-color: transparent;
+    margin-left: 10px;
+    font-size: 30px;
+    display: inline-block;
+}
+.nameAndDelete{
+    margin: 0
+}
+.horizontal{
+    padding-top: 0px;
+}
+.delete{
+    border: none;
+    background-color: transparent;
+    font-size: 30px;
+    margin-left: 150px ;
+}
+#horizontal-card-image{
+    background-position: center;
+    background-size: cover;
+}
+.Minus{
+    display: inline-block;
+}
+.ticket-counter-box{
+    width: 400px;
+}
+.ticket-counter-box .Minus{
+    margin-left: 100px;
+    cursor: pointer;
+}
+.ticket-counter-box .Plus{
+    cursor: pointer;
+}
+.trip-Minus{
+    display: inline-block;
+}
+.ticketShow{
+ display: inline-block;
+}
+.tripPlus{
+    display: inline-block;
+}
+.Plus:hover{
+    color:white;
+}
+.Minus:hover{
+    color:white;
+}
+.delete:hover{
+    color: white;
+}
 
+.finalPrice{
+    margin-left: 300px;
+}
+/* Table Basket page */
+#deduct{
+    font-size: 30px;
+}
+#deduct button{
+    background-color: transparent;
+    border: none;
+}
+tbody{
+    width: 600px;
+    height: 150px;
+   overflow-y: auto;
+}
+.cartCard:hover{
+    background-color: #489FB5;
+}
