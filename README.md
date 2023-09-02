@@ -1,7 +1,8 @@
 
-![SeagullStarCruisesLogo](/assets/readme/Readme_cover.png)
+Home
+![SeagullStarCruisesLogo](/Screenshots/Final-screenshots/Home-page-final-top.png)
 
-This is a demo project which aims to showcase more advanced javascript and jQuery to first year development students.
+This is a project helped me gain a deeper understanding of jquery and javascript.
 
 [Watch the demo »]()
 
@@ -9,7 +10,7 @@ This is a demo project which aims to showcase more advanced javascript and jQuer
 
 * [About the Project](#about-the-project)
    * [Home](#home)
-   * [Browse Plants](#browse-plants)
+   * [Trips page](#trips-page)
 * [Getting Started](#getting-started)
   * [Installing](#installing)
 * [Built With](#built-with)
@@ -24,15 +25,18 @@ Seagull Star Cruises is a cruise company who do trips around Southern Africa and
 
 ### Home
 
-![SeagullStarCruisesLogo](/assets/readme/readme_homepage.png)
+![SeagullStarCruisesLogo](/Screenshots/Final-screenshots/Home-page-final-top.png)
+![SeagullStarCruisesLogo](/Screenshots/Final-screenshots/home-page-map.png)
+![SeagullStarCruisesLogo](/Screenshots/Final-screenshots/show-city-temperature-home-page.png)
 
 ### Trips page
 
-![SeagullStarCruisesLogo](/assets/readme/readme_browsepage.png)
+![SeagullStarCruisesLogo](/Screenshots/Final-screenshots/default-state-trips-page.png)
+![SeagullStarCruisesLogo](/Screenshots/Final-screenshots/trip-pages-different-filter.png)
 
 ### Basket page
 
-![SeagullStarCruisesLogo](/assets/readme/readme_browsepage.png)
+![SeagullStarCruisesLogo](/Screenshots/Final-screenshots/Carts-page-with-cruises.png)
 
 
 ## Getting Started
@@ -43,7 +47,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 1. Clone the repo
 ```sh
-git clone https://github.com/paulowi/DV100-T3-Class-Project-Test
+git clone https://github.com/Sean-D-231121/231121-DV100-Term-3-Cruise-project.git
 ```
 2. Open the project
 
@@ -60,10 +64,18 @@ Use `Open Workspace` in Visual Studio.
 
 ## Authors
 
-* **Paul Loots** - *Javascript & HTML* - [PaulLoots](https://github.com/PaulLoots)
-* **Carlo Kuyper** - *Open Weather API* - [CarloOpenWindow](https://github.com/CarloOpenWindow)
+* **Sean Dubbelman** - *Everything* - [SeanDubbelman](https://github.com/Sean-D-231121)
 
-See also the list of [contributors](https://github.com/paulowi/DV100-T3-Class-Project-Test/graphs/contributors) who participated in this project.
+
+## Contributing
+
+Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 ## License
 
@@ -71,6 +83,6 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgements
 
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+* Paul Loots gave detailed lessons on Jquery which makes up almost 50% of project
+* Carlo Kuyper gave a lesson on API's and how to recieve data from them.
+* 
