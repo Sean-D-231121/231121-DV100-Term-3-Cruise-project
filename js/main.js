@@ -232,6 +232,7 @@ $(document).ready(function () {
   anchorCheck();
   loadTripCards(cruisesArray);
   checkCart();
+  $(".changeHeading").text("Want an amazing cruise experience?")
   $("#map-trip-name").text(onLoadCity.cruiseName);
   getCity();
 

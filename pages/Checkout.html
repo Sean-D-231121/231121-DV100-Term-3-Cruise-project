@@ -13,6 +13,8 @@
   </head>
   <body>
     <!-- nav -->
+    <!-- Button trigger modal -->
+
     <nav class="navbar navbar-expand-lg" style ="background-color: #489FB5;">
 
     <a class="navbar-brand" href="../index.html"><img src="../assets/Logo-normal.png" alt="normal logo"></a>
@@ -31,6 +33,22 @@
     </div>
 </nav>
 <div class="container">
+ 
+
+<!-- Modal -->
+<div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content" style="background-color: #489FB5;">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="paymentModalLabel">Purchase Successful</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn modal-close" data-bs-dismiss="modal">See you there</button>
+      </div>
+    </div>
+  </div>
+</div>
   <div class="row">
     <div class="col-6 " id="cards-checkout">
       
@@ -56,7 +74,7 @@
   <button  class="see-more-button" id="remove">Remove all</button>
 </div>
 <div class="col-6">
-  <button  class="see-more-button" id="pay">Pay</button>
+  <button  class="see-more-button" type="button" data-bs-toggle="modal" data-bs-target="#paymentModal" id="pay">Pay</button>
 </div>
 </div>
     </div>

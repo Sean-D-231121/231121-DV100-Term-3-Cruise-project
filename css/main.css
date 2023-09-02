@@ -521,3 +521,18 @@ tbody{
 .cartCard:hover{
     background-color: #489FB5;
 }
+.modal-close{
+    background-color: #FF9F1C;
+    margin: 0 auto;
+}
+.modal-close:hover{
+    background-color: #FFBF69;
+}
+.modal-close:focus{
+    background-color: #FFBF69;
+}
+.modal-title{
+    color: white;
+    text-align: center;
+    margin-left: 150px;
+}
