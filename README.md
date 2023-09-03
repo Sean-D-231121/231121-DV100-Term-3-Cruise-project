@@ -85,4 +85,5 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) f
 
 * Paul Loots gave detailed lessons on Jquery which makes up almost 50% of project
 * Carlo Kuyper gave a lesson on API's and how to recieve data from them.
+* [References](/References/references.txt)
 * 
