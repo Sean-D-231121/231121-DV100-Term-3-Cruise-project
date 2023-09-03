@@ -35,12 +35,12 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="../pages/Trips.html"
+            <a class="nav-link" aria-current="page" href="./pages/Trips.html"
               >Trips</a
             >
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./pages//Checkout.html">Basket</a>
+            <a class="nav-link" href="./pages/Checkout.html">Basket</a>
           </li>
         </ul>
       </div>
@@ -57,7 +57,7 @@
               treatments, and savor delectable cuisine as you drift from one
               breathtaking destination to another.
             </p>
-            <button class="carousel-button">Go to trip</button>
+            <a href="./pages/Trips.html"><button class="carousel-button">Go to trip</button></a>
           </div>
         </div>
         <div class="carousel-item slide-2">
@@ -72,7 +72,7 @@
               moment spent in this cabin is a symphony of relaxation and
               opulence.
             </p>
-            <button class="carousel-button">Go to trip</button>
+            <a href="./pages/Trips.html"><button class="carousel-button">Go to trip</button></a>
           </div>
         </div>
         <div class="carousel-item slide-3">
@@ -84,7 +84,7 @@
               world-class chefs orchestrate culinary masterpieces that delight
               even the most discerning palate.
             </p>
-            <button class="carousel-button">Go to trip</button>
+            <a href="./pages/Trips.html"><button class="carousel-button">Go to trip</button></a>
           </div>
         </div>
         <button
@@ -176,13 +176,13 @@
           <div class="col-6">
             <div class="card">
               <div id="reviewSlide" class="carousel slide">
-                <div class="carousel-inner">
+                <div class="carousel-inner" id="reviewSlideInner">
                   <div class="carousel-item active" id="reviewSlide1"></div>
                   <div class="carousel-item" id="reviewSlide2"></div>
                   <div class="carousel-item" id="reviewSlide3"></div>
                 </div>
                 <button
-                  class="carousel-control-prev"
+                  class="carousel-control-prev review-previous"
                   type="button"
                   data-bs-target="#reviewSlide"
                   data-bs-slide="prev"
@@ -194,7 +194,7 @@
                   <span class="visually-hidden">Previous</span>
                 </button>
                 <button
-                  class="carousel-control-next"
+                  class="carousel-control-next review-next"
                   type="button"
                   data-bs-target="#reviewSlide"
                   data-bs-slide="next"
@@ -208,7 +208,7 @@
               </div>
               <div class="card-body">
                 <h5 class="card-title text-center">Reviews</h5>
-                <p class="card-text">
+                <p class="card-text" id="card-review-text">
                   Wonderful experience!!!!!!!
                 </p>
                 <img class="star-rating" src="./assets/Group 380.png" alt="" />

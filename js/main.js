@@ -213,7 +213,7 @@ let year = getTodayDate.getFullYear();
 let setDate = day + "/" + month + "/" + year;
 let CartCruiseTable = [];
 let filterSortArray = [];
-
+// sets CruiseCart to "cruises" from Local storage
 if (checkLocal !== null) {
   CruiseCart = CruiseCart.concat(checkLocal);
   for (let i = 0; i < CruiseCart.length; i++) {
@@ -248,6 +248,19 @@ $(document).ready(function () {
   ticketFunctions();
    checkCartNull();
 });
+$("#book-trip-button").click(function(){
+  
+  if(getCruiseCartName("7 day trip cruise from Brisbane to Sydney") === null){
+    console.log("hello");
+    cruisesArray[
+      getCruiseArrayObject("7 day trip cruise from Brisbane to Sydney")
+    ].ticket = 1;
+    CruiseCart.push(cruisesArray[(getCruiseArrayObject("7 day trip cruise from Brisbane to Sydney"))]);
+    anchorCheck();
+    getCartInfo();
+  };
+});
+// Changes card color and shows description on hover
 cardHover = () => {
 $(".trip-card").hover(
   function () {
@@ -260,7 +273,35 @@ $(".trip-card").hover(
   }
 );
 }
-
+// When review carousel right button is clicked sets #card-review-text to new value
+$(".review-next").click(function() {
+    if ($("#reviewSlide .active").index("#reviewSlide .carousel-item") === 0) {
+      $("#card-review-text").text("Best food I've ever had!");
+    } else if (
+      $("#reviewSlide .active").index("#reviewSlide .carousel-item") === 1
+    ) {
+      $("#card-review-text").text("Great service all around!");
+    }else if (
+      $("#reviewSlide .active").index("#reviewSlide .carousel-item") === 2
+    ) {
+      $("#card-review-text").text("Wonderful experience!!!!!!!");
+    }
+})
+// When review carousel left button is clicked sets #card-review-text to new value
+$(".review-previous").click(function () {
+  if ($("#reviewSlide .active").index("#reviewSlide .carousel-item") === 0) {
+    $("#card-review-text").text("Best food I've ever had!");
+  } else if (
+    $("#reviewSlide .active").index("#reviewSlide .carousel-item") === 1
+  ) {
+    $("#card-review-text").text("Wonderful experience!!!!!!!");
+  } else if (
+    $("#reviewSlide .active").index("#reviewSlide .carousel-item") === 2
+  ) {
+    $("#card-review-text").text("Great service all around!");
+  }
+});
+// sets stored values for cruisesArray only if "cruises" exists in localStorage
 checkInCart = () => {
   let currentStorage = JSON.parse(localStorage.getItem("cruises"));
   if (currentStorage !== null) {
@@ -277,6 +318,7 @@ checkInCart = () => {
     return;
   }
 };
+// API call when the document is ready
 $.ajax({
   type: "GET",
   url:
@@ -384,11 +426,15 @@ removeAll = () => {
     CruiseCart = [];
     cruiseCartTable = [];
     loadCartTripCards(CruiseCart);
+    checkCartNull();
   });
 };
+// Checks whether element with cards in Basket have anything inside of them
 checkCartNull = () =>{
   if($("#cards-checkout").children().length === 0){
-    $("#cards-checkout").append('<h1 class="showNothing">Nothing is here</h1>')
+    $("#cards-checkout").append(
+      '<div class="showNothing"><h1>No cruises in cart</h1> <img src="../assets/boat-no-orders.png"></div>'
+    );
   }else{
     $(".showNothing").remove();
   }
@@ -458,6 +504,7 @@ $(".filter-list").on("click", ".anchor", function () {
   }
   anchorCheck();
 });
+// Changes filter and reloads cards to suit the filter
 anchorCheck = () => {
   cardHover();
   
@@ -519,7 +566,7 @@ anchorCheck = () => {
   $(".sortButton").text(sortWord);
   ticketFunctions();
 };
-
+// adds and subtracts tickets in trips page
 ticketFunctions = () =>{
   // subtract tickets on trips page
   $(".trip-Minus").click(function () {
@@ -544,6 +591,7 @@ ticketFunctions = () =>{
   });
    $(".tripPlus").click(function () {
      let cardCheckIndex = $(this).closest(".col-4").index();
+     console.log($(this).closest("#cruiseTripsList").children());
      console.log(cardCheckIndex);
      let getName = filterSortArray[cardCheckIndex].cruiseName;
      console.log(getName);
@@ -562,6 +610,7 @@ ticketFunctions = () =>{
      anchorCheck();
    });
 }
+// Function to find name in CruiseCart
 getCruiseCartName = (getName) =>{
   for (let i = 0; i < CruiseCart.length; i++) {
     const element = CruiseCart[i];
@@ -569,6 +618,7 @@ getCruiseCartName = (getName) =>{
       return i
     }
   }
+  return null;
 }
 
 // Card interactions on basket page
@@ -577,12 +627,14 @@ $("#cards-checkout").on("click","#deleteCard", function(){
   CruiseCart.splice(cardCheckIndex,1);
   getCartInfo();
   loadCartTripCards(CruiseCart)
+  checkCartNull()
 })
 $("#tableBody").on("click", "#deduct", function () {
   let tableCheckIndex = $(this).closest("tr").index();
   CruiseCart.splice(tableCheckIndex, 1);
   getCartInfo();
   loadCartTripCards(CruiseCart);
+  checkCartNull();
 });
 $("#cards-checkout").on("click","#plus", function(){
   let cardCheckIndex = $(this).closest(".cartCard").index();
@@ -601,6 +653,7 @@ $("#cards-checkout").on("click", "#minus", function () {
   getCartInfo();
   loadCartTripCards(CruiseCart);
 });
+// Gets the five cheapest trips
 getCheapTrips = () => {
   let cheapTrips = [];
   cheapTrips = cruisesArray;
@@ -611,7 +664,7 @@ getCheapTrips = () => {
   });
   return cheapTrips.slice(0, 5);
 };
-
+// Gets new value and sets it to new heading in dropdown for cities
 $(".sortDropDown").on("click", ".dropdown-item", function () {
   sorter = $(this).attr("value");
   sortWord = $(this).text();
@@ -738,6 +791,7 @@ checkCurrentWeatherInfo = (weatherWord) => {
     $(".tab-pane ").css("color", "white");
   }
 };
+// Sets the localStorage array for "cruises"
 getCartInfo = () => {
   if (CruiseCart.length > 0) {
     let cruiseInfo = JSON.stringify(CruiseCart);

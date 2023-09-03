@@ -149,7 +149,7 @@ footer{
     
 }
 
-
+/* Review carousel */
  #reviewSlide .carousel-item {
     margin-top: 0px;
     position:relative;
@@ -159,18 +159,18 @@ footer{
    color: white;
 }
 #reviewSlide1{
-    background-image: url("../assets/slide1-image.png");
+    background-image: url("../assets/Reviewslide-1.jpg");
     background-size:cover;
 
     background-position: center;
 }
 #reviewSlide2{
-    background-image: url("../assets/slide2-image.png");
+    background-image: url("../assets/reviewSlide-2.jpg");
     background-size:cover;
     background-position: center;
 }
 #reviewSlide3{
-    background-image: url("../assets/Dining-experience.jpg");
+    background-image: url("../assets/reviewSlide-3.jpg");
     background-size:cover;
     background-position: center;
 }
@@ -392,7 +392,7 @@ font-size: 20px;
 }
 .ticketTrip{
     display: inline-block;
-    margin-left: 90px;
+    margin-left: 60px;
     font-size: 30px;
     color: white;
     font-weight: 700;
@@ -535,4 +535,11 @@ tbody{
     color: white;
     text-align: center;
     margin-left: 150px;
+}
+.showNothing img{
+    width: 400px;
+    height: 250px;
+}
+.showNothing{
+    text-align: center;
 }
