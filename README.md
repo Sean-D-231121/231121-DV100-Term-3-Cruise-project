@@ -11,6 +11,7 @@ This is a project helped me gain a deeper understanding of jquery and javascript
 * [About the Project](#about-the-project)
    * [Home](#home)
    * [Trips page](#trips-page)
+   * [Basket page](#basket-page)
 * [Getting Started](#getting-started)
   * [Installing](#installing)
 * [Built With](#built-with)
